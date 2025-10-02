@@ -12,6 +12,10 @@ class NativeLib {
 
     external fun testQuickJS(): String
 
+    external fun testJsInvokeC()
+
+    external fun testJSProxyObject()
+
     companion object {
         // Used to load the 'quickjs' library on application startup.
         init {
@@ -21,6 +25,8 @@ class NativeLib {
             Log.i("ldg-test", ": stringFromJNI = $stringFromJNI")
             val testQuickJS = nativeLib.testQuickJS()
             Log.i("ldg-test", ": testQuickJS = $testQuickJS")
+            nativeLib.testJsInvokeC()
+            nativeLib.testJSProxyObject()
         }
     }
 }
