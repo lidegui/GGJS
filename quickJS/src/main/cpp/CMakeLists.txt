@@ -24,9 +24,44 @@ project("quickjs")
 # System.loadLibrary() and pass the name of the library defined here;
 # for GameActivity/NativeActivity derived applications, the same library name must be
 # used in the AndroidManifest.xml file.
+set(QUICKJS_PATH "./quickjs")
+set(CONFIG_VERSION "2025-10-1")
+add_definitions(-DCONFIG_VERSION=\"${CONFIG_VERSION}\")
+add_definitions(-DCONFIG_BIGNUM)
+
+file(GLOB wrapper_src
+        "${QUICKJS_PATH}/*.h"
+        "${QUICKJS_PATH}/*.cpp")
+
+file(GLOB quickjs_src
+        "${QUICKJS_PATH}/cutils.c"
+        "${QUICKJS_PATH}/cutils.h"
+        "${QUICKJS_PATH}/libbf.c"
+        "${QUICKJS_PATH}/libbf.h"
+        "${QUICKJS_PATH}/dtoa.c"
+        "${QUICKJS_PATH}/dtoa.h"
+        "${QUICKJS_PATH}/libregexp-opcode.h"
+        "${QUICKJS_PATH}/libregexp.c"
+        "${QUICKJS_PATH}/libregexp.h"
+        "${QUICKJS_PATH}/libunicode-table.h"
+        "${QUICKJS_PATH}/libunicode.c"
+        "${QUICKJS_PATH}/libunicode.h"
+        "${QUICKJS_PATH}/list.h"
+        "${QUICKJS_PATH}/quickjs-atom.h"
+        "${QUICKJS_PATH}/quickjs-opcode.h"
+        "${QUICKJS_PATH}/quickjs.c"
+        "${QUICKJS_PATH}/quickjs.h"
+        "${QUICKJS_PATH}/quickjs-libc.c")
+
+file(GLOB ggjs_src
+        "*.cpp"
+        "*.h")
+
+message("wrapper_src: ${wrapper_src}, quickjs_src: ${quickjs_src}, ggjs_src: ${ggjs_src}")
+
 add_library(${CMAKE_PROJECT_NAME} SHARED
         # List C/C++ source files with relative paths to this CMakeLists.txt.
-        quickjs.cpp)
+        ${ggjs_src} ${wrapper_src} ${quickjs_src})
 
 # Specifies libraries CMake should link to your target library. You
 # can link libraries from various origins, such as libraries defined in this
