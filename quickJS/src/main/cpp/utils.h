@@ -15,9 +15,25 @@
 #define LOGI(fmt, ...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, fmt, ##__VA_ARGS__)
 #define LOGD(fmt, ...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, fmt, ##__VA_ARGS__)
 
-class utils {
+using namespace std;
 
-};
 
+extern jclass jsRuntimeClass;
+extern jclass booleanClass;
+extern jclass integerClass;
+extern jclass stringClass;
+
+extern jmethodID propGetter;
+extern jmethodID propSetter;
+extern jmethodID getFunPtr;
+extern jmethodID booleanValueOf;
+extern jmethodID integerValueOf;
+
+
+jstring toJavaString(JNIEnv *env, JSContext *context, JSValue value);
+
+jobject toJavaObject(JNIEnv *env, jobject thiz, JSContext *context, JSValueConst value);
+
+JSValue toJSValue(JNIEnv *env, jobject thiz, JSContext *context, jobject value);
 
 #endif //GGJS_UTILS_H
