@@ -21,13 +21,33 @@ using namespace std;
 extern jclass jsRuntimeClass;
 extern jclass booleanClass;
 extern jclass integerClass;
+extern jclass longClass;
+extern jclass doubleClass;
 extern jclass stringClass;
+extern jclass mapClass;
+extern jclass objectClass;
+extern jclass jsFunctionClass;
+extern jclass jsObjectClass;
 
+
+extern jmethodID methodCall;
+extern jmethodID isProxy;
 extern jmethodID propGetter;
 extern jmethodID propSetter;
-extern jmethodID getFunPtr;
+extern jmethodID getJavaPtr;
+
 extern jmethodID booleanValueOf;
 extern jmethodID integerValueOf;
+extern jmethodID longValueOf;
+extern jmethodID doubleValueOf;
+extern jmethodID mapInit;
+extern jmethodID mapPut;
+extern jmethodID getProxyObj;
+
+extern jmethodID booleanGetValue;
+extern jmethodID integerGetValue;
+extern jmethodID longGetValue;
+extern jmethodID doubleGetValue;
 
 
 jstring toJavaString(JNIEnv *env, JSContext *context, JSValue value);
